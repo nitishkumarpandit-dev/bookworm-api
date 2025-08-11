@@ -4,6 +4,8 @@ import cors from "cors";
 import AuthRoutes from "../src/routes/auth.routes.js";
 import BookRoutes from "../src/routes/book.routes.js";
 import { connectDB } from "./lib/db.js";
+import job from "./lib/corn.js";
+
 
 
 const app = express();
@@ -11,10 +13,11 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
+job.start();
 
 app.get("/", (req, res) => {
     console.log("Welcome to api");
-    res.send("Welcome to api");
+    res.send("Welcome to bookworm api");
 })
 
 app.use("/api/auth", AuthRoutes)
